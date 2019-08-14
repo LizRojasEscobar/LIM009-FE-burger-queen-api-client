@@ -68,11 +68,14 @@ export class OrdersComponent implements OnInit {
         products: this.lstPedido,     
       };
       this.userservice.getOrder(this.orderForBackend).subscribe(arg => console.log(arg));
+      
     });
     
   }
 
+
   clear(){
+    this.orderservice.deleteProducts();
     this.nameClient="";
     this.orderProduct=[];
     this.orderservice.lstProducts =[];    

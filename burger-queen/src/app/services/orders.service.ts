@@ -27,12 +27,12 @@ refresh() {
 
 
 sharingProductData(product: product) {
-console.log(product._id);
-// Buscando si existe el producto seleccionado en la lista de productos
-let objProduct = this.lstProducts.find(ele=>  ele._id === product._id); 
-if(objProduct===undefined){
-  this.lstProducts.push(product);  // next cambia el valor
-  this.refresh(); 
+  console.log(product._id);
+  // Buscando si existe el producto seleccionado en la lista de productos
+  let objProduct = this.lstProducts.find(ele=>  ele._id === product._id); 
+    if(objProduct===undefined){
+    this.lstProducts.push(product);  // next cambia el valor
+    this.refresh(); 
 }
 console.log(this.lstProducts);
 //console.log(this.lstProducts.length);
@@ -49,11 +49,16 @@ getProductOfOrders(){
 //CRUD
 }
 
+deleteProducts(){
+  this.lstProducts.splice(0)
+}
+
 deleteProduct(idx : number){
     this.lstProducts.splice(idx,1)
     this.refresh();
     console.log(this.lstProducts) 
   }
+
  getOrders() : Observable<orderResponse[]> {
    const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.userService.Usertoken
