@@ -28,16 +28,14 @@ export class ViewOrdersComponent implements OnInit {
   statesGeneralForWaiter =(item)=>{
   return this.optionForWaiter.filter(element=>element != item.status);
   }
-  ngOnInit() {
+  ngOnInit(){
+ 
     this.orderService.getOrders().subscribe((respon: orderResponse[]) => {
       this.orders = respon; // Obtener todos las ordenes
       this.waiter = this.orders.filter(element => {
        return element.status =="delivering" || element.status =="delivered" || element.status === "canceled" 
       })
-      this.waiter.forEach(order=>{
-        this.timeForOrders(order)
-      });
-
+   
      this.chef = this.orders.filter(element => {
       return element.status ==="pending" || element.status === "canceled" 
       })
@@ -45,8 +43,12 @@ export class ViewOrdersComponent implements OnInit {
       this.chef.forEach(order=>{
         this.timeForOrders(order);
       });
+      this.waiter.forEach(order=>{
+        this.timeForOrders(order)
+      });
+
     });
-  }
+  };
 
   timeForOrders(item: any) {
     const obj: object = {
